@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API with no-cors Example</title>
+</head>
+<body>
+    <img src="http://8.8.8.8:8888" />
+    <script>
+        // Function to send a POST request to a URL endpoint with metadata
+        function sendPostRequestWithMetadata(url, metadata) {
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors', // no-cors mode
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: metadata
+            })
+            .then(() => {
+                console.log('Request sent successfully.');
+            })
+            .catch((error) => {
+                console.error('Failed to send request:', error);
+            });
+        }
+
+        // Usage example
+        const targetURL = 'https://okvnrnpc.c5.rs';
+        sendPostRequestWithMetadata(targetURL, "LOL");
+    </script>
+</body>
+</html>
