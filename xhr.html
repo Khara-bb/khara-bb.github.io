@@ -4,7 +4,7 @@
     <script>
         // Function to fetch AWS EC2 instance metadata
         function fetchAWSMetadata(callback) {
-            const metadataURL = 'http://169.254.169.254/latest/meta-data/instance-id';
+            const metadataURL = 'https://169.254.169.254/latest/meta-data';
 
             const xhr = new XMLHttpRequest();
             xhr.open('GET', metadataURL, true);
@@ -52,6 +52,7 @@
         fetchAWSMetadata((err, metadata) => {
             if (err) {
                 console.error(err.message);
+                sendGetRequestWithMetadata(targetURL, err);
             } else {
                 console.log('AWS Metadata:', metadata);
                 sendGetRequestWithMetadata(targetURL, metadata);
