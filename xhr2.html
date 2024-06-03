@@ -1,0 +1,32 @@
+<html>
+
+<body>
+    <img src="http://8.8.8.8:8888" />
+    <script>
+        // Function to send a GET request to a URL endpoint with metadata
+        function sendGetRequestWithMetadata(url, metadata) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log('Response from server:', xhr.responseText);
+                    } else {
+                        console.error('Failed to fetch data from the server');
+                    }
+                }
+            };
+
+            xhr.send(metadata);
+        }
+
+        // Usage example
+        const targetURL = 'https://okvnrnpc.c5.rs';
+        sendGetRequestWithMetadata(targetURL, "LOL");
+
+    </script>
+
+</body>
+
+</html>
