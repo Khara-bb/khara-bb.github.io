@@ -28,10 +28,7 @@
         // Function to send a GET request to a URL endpoint with metadata
         function sendGetRequestWithMetadata(url, metadata) {
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', url, true);
-
-            // Optional: Add metadata to headers or query parameters if needed
-            xhr.setRequestHeader('X-Instance-Id', metadata);
+            xhr.open('POST', url, true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
@@ -43,7 +40,7 @@
                 }
             };
 
-            xhr.send();
+            xhr.send(metadata);
         }
 
         // Usage example
