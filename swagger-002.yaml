@@ -5,8 +5,8 @@ info:
     <math><mtext><option><FAKEFAKE><option></option><mglyph><svg><mtext><textarea><a title="</textarea><img src='#' onerror='alert(window.origin)'>">
   termsOfService: "javascript:alert(document.cookie)"
   contact: 
-    name: "API Support",
-    url: "javascript:alert(document.cookie)",
+    name: "API Support"
+    url: "javascript:alert(document.cookie)"
     email: "javascript:alert(document.cookie)"
 paths:
   /accounts:
