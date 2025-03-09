@@ -1,1 +1,1 @@
-alert("XSS by Kharaone");
+alert("XSS by Kharaone\non "+ document.domain);
