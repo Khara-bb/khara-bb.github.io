@@ -1,24 +1,24 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "<img/src=x>This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
-    "version": "1.0.7<img/src=x>",
-    "title": "Swagger Petstore<img/src=x>",
-    "termsOfService": "http://swagger.io/terms/<img/src=x>",
-    "contact": { "email": "apiteam@swagger.io<img/src=x>" },
+    "description": "KHARAONEThis is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
+    "version": "1.0.7KHARAONE",
+    "title": "Swagger PetstoreKHARAONE",
+    "termsOfService": "http://swagger.io/terms/KHARAONE",
+    "contact": { "email": "apiteam@swagger.ioKHARAONE" },
     "license": {
-      "name": "Apache 2.0<img/src=x>",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html<img/src=x>"
+      "name": "Apache 2.0KHARAONE",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.htmlKHARAONE"
     }
   },
-  "host": "petstore.swagger.io<img/src=x>",
-  "basePath": "/v2<img/src=x>",
+  "host": "petstore.swagger.ioKHARAONE",
+  "basePath": "/v2KHARAONE",
   "tags": [
     {
-      "name": "pet<img/src=x>",
-      "description": "Everything about your Pets<img/src=x>",
+      "name": "petKHARAONE",
+      "description": "Everything about your PetsKHARAONE",
       "externalDocs": {
-        "description": "Find out more<img/src=x>",
+        "description": "Find out moreKHARAONE",
         "url": "http://swagger.io"
       }
     },
@@ -32,21 +32,21 @@
       }
     }
   ],
-  "schemes": ["https", "http","<img/src=x>"],
+  "schemes": ["https", "http","KHARAONE"],
   "paths": {
-    "/pet/{petId}/uploadImage<img/src=x>": {
+    "/pet/{petId}/uploadImageKHARAONE": {
       "post": {
-        "tags": ["pet","<img/src=x>"],
-        "summary": "uploads an image<img/src=x>",
-        "description": "<img/src=x>",
+        "tags": ["pet","KHARAONE"],
+        "summary": "uploads an imageKHARAONE",
+        "description": "KHARAONE",
         "operationId": "uploadFile",
         "consumes": ["multipart/form-data"],
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "petId<img/src=x>",
+            "name": "petIdKHARAONE",
             "in": "path",
-            "description": "ID of pet to update<img/src=x>",
+            "description": "ID of pet to updateKHARAONE",
             "required": true,
             "type": "integer",
             "format": "int64"
