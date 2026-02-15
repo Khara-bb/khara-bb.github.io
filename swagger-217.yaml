@@ -49,4 +49,4 @@ components:
       properties:
         name:
           type: string
-          example: "<something here>"
+          example: "<h1>HELLO</h1>"
