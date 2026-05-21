@@ -1,0 +1,113 @@
+openapi: 3.0.3
+
+info:
+  title: Swagger Surface Test
+  version: "1.0"
+  description: |
+    INFO_DESCRIPTION_HTML
+    <select><button><selectedcontent></selectedcontent></button>
+    <option selected=javascript:1><img src=x onerror=alert(1)>x</option></select>
+
+externalDocs:
+  description: EXTERNAL_DOCS_DESCRIPTION <b>bold</b>
+  url: https://example.com
+
+servers:
+  - url: https://example.com/{var}
+    description: SERVER_DESCRIPTION <b>bold</b>
+    variables:
+      var:
+        default: test
+        description: SERVER_VARIABLE_DESCRIPTION <b>bold</b>
+
+tags:
+  - name: TAG_HTML_<b>X</b>
+    description: |
+      TAG_DESCRIPTION_HTML
+      <b>bold</b>
+      <svg><desc>tag svg</desc></svg>
+
+paths:
+  /test/{id}:
+    get:
+      tags:
+        - TAG_HTML_<b>X</b>
+      summary: SUMMARY_HTML <b>bold</b>
+      description: |
+        OPERATION_DESCRIPTION_HTML
+        <b>bold</b>
+        <svg><desc>op svg</desc></svg>
+
+      operationId: OP_ID_HTML_<b>X</b>
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: |
+            PARAM_DESCRIPTION_HTML
+            <b>bold</b>
+            <svg><desc>param svg</desc></svg>
+          schema:
+            type: string
+            example: EXAMPLE_IN_PARAM_<b>X</b>
+
+        - name: queryParam
+          in: query
+          required: false
+          description: QUERY_PARAM_DESCRIPTION_<b>X</b>
+          schema:
+            type: string
+            default: DEFAULT_VALUE_<b>X</b>
+            enum:
+              - ENUM_VALUE_1_<b>X</b>
+              - ENUM_VALUE_2_<svg></svg>
+
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestSchema'
+
+      responses:
+        '200':
+          description: RESPONSE_DESCRIPTION_HTML <b>bold</b>
+          headers:
+            X-Test:
+              description: HEADER_DESCRIPTION_<b>X</b>
+              schema:
+                type: string
+                example: HEADER_EXAMPLE_<b>X</b>
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSchema'
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: SECURITY_DESCRIPTION_<b>X</b>
+
+  schemas:
+    TestSchema:
+      type: object
+      description: SCHEMA_DESCRIPTION_HTML <b>bold</b>
+      properties:
+        name:
+          type: string
+          description: PROPERTY_DESCRIPTION_<b>X</b>
+          example: PROPERTY_EXAMPLE_<b>X</b>
+        nested:
+          type: object
+          description: NESTED_DESCRIPTION_<b>X</b>
+          properties:
+            inner:
+              type: string
+              example: INNER_EXAMPLE_<b>X</b>
+
+  responses:
+    CustomResponse:
+      description: COMPONENT_RESPONSE_DESCRIPTION_<b>X</b>
